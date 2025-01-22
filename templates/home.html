@@ -2,20 +2,67 @@
 <html>
   <head>
     <title>plant clinic</title>
+    <style>
+      h1 {
+        font-size : 40px;
+        font family : Roboto;
+        font-weight : normal;
+        color : rgb(100,100,100);
+        text-align : center;
+      }
+      #banner {
+        width : 90%;
+        height : 360px;
+        object-fit : cover;
+        
+        
+      }
+      h2 {
+        font-size : 32px;
+        font-family : roboto;
+        font-weight : normal;
+        color : rgb(0,0,0);
+        text-align : center;
+        
+      }
+      .bodytext {
+        font-family : roboto;
+        color : rgb(80,80,80);
+        
+      }
+      #container {
+        max-width : 720px;
+        margin : 0 auto 0 auto;
+      }
+    </style>
   </head>
   <body>
-    <h1>{{plant_name}} CLINIC</h1>
-    <img src="http://www.htmldog.com/badge1.gif">
-    <h2> about plant clinic</h2>
-    <p> Lorem ipsum odor amet, consectetuer adipiscing elit. Placerat lorem accumsan phasellus hac per sed. Curabitur dui ridiculus dapibus litora aliquam curabitur. Posuere auctor euismod mi turpis habitant augue vehicula primis. Sodales penatibus et mollis erat senectus blandit condimentum et. Commodo conubia sodales vivamus primis urna posuere habitant? Semper ornare himenaeos erat tempus blandit ligula tristique placerat. Ultricies ornare suspendisse suspendisse vestibulum placerat sit luctus accumsan.</p>
-    <h2>plant categories</h2>
-    <div>
-      { % for plant in plants % }
-     
-      {% include 'plantname.html' %}
+    <div id="container">
+      <h1>PLANT  CLINIC</h1>
+      <img id="banner" src="https://www.shutterstock.com/image-photo/young-plant-growth-spouts-on-260nw-2510787589.jpg">
+      <h2> about plant clinic</h2>
+      <p class="bodytext"> Lorem ipsum odor amet, consectetuer adipiscing elit. Placerat lorem accumsan phasellus hac per sed.   Curabitur dui ridiculus dapibus litora aliquam curabitur. Posuere auctor euismod mi turpis habitant augue vehicula primis. Sodales penatibus et mollis erat senectus blandit condimentum et. Commodo conubia sodales vivamus primis urna posuere habitant? Semper ornare himenaeos erat tempus blandit ligula tristique placerat. Ultricies ornare suspendisse suspendisse vestibulum placerat sit luctus accumsan.</p>
+      <h2>plant categories</h2>
+      <div>
+        {% include 'plantname.html' %}
+
+      </div>
+      <div style= "text-align:center;">
+        <button>CONTACT US</button>
+        <p> copyright 2024,plant clinic </p>
+        
+      </div>
       
-      { % end for % }
+      
+      <button type="button" class="btn-close" disabled aria-label="Close"></button>
+      
     </div>
-    <button>CONTACT US</button>
+    
+     
+    
+      
+      
   </body>
+  
+  
 </html>
