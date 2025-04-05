@@ -1,18 +1,38 @@
-<div style="margin-bottom :16px;"> 
-    <h4 
-     style="color:rgb(120,120,120); 
-     margin-bottom:4px;">
-     {{plant['title']}}
-    </h4> 
-    <div>
-
-      <b>breed:</b>{{plant['breed']}} 
-
-   </div>
-   {% if 'disease' in plant  %}
-    <div>
-
-      <b>disease:</b>{{plant['disease']}} 
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" area-label="fifth navbar example">
+  <div class="conatiner-fluid">
+    <a class="navbar-brand" href="#"> expand at lg
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggler="navbarexamples" aria-controls="navbarsExample05" area-expanded="false" aria-label="toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarsExample05">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#"> Home </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled"> disabled </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toogle" 
+            href="#" id="dropdown05" 
+            data-bs-toggle="dropdown" aria-expanded="false"> Dropdown </a>
+          <ul class="dropdown-menu" aria-labelledby="dropdown05">
+            <li>
+              <a class="dropdown-item"href="#"> Action </a>
+            </li>
+            <li>
+              <a class="dropdown-item"href="#"> Another Action </a>
+            </li>
+            <li><a class="dropdown-item"href="#"> Something else here </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <form role="search">
+        <input class="form-control" type="search" placeholder="search" aria-label="search"></input>
+      </form>
     </div>
-   {% endif %}
- </div>
+  </div>
+  
+</nav>
