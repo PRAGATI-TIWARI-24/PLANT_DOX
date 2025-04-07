@@ -1,11 +1,12 @@
 
 from skimage import io
+from PIL import Image
 import numpy as np 
 from matplotlib import pyplot as plt
 my_image=io.imread('uploaded_leaf.jpg')
 print('my_image')
-random_image=np.random.random([500,500])
-plt.imshow(random_image)
-plt.imshow(my_image)
-print(random_image.min() , random_image.max())
-print(my_image.min() , my_image.max())
+random_image=np.random.random([200,200])
+print(my_image.size)
+print(my_image.dtype)
+print(my_image.shape)
+my_image.FLIP_LEFT_RIGHT

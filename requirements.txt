@@ -10,3 +10,8 @@ matplotlib
 matplotlib
 matplotlib
 opencv-python
+matplotlib
+numpy
+scikit-image
+Pillow
+Pillow
