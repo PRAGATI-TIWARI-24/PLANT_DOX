@@ -1,12 +1,10 @@
-
-import matplotlib
-matplotlib.use('Agg')  # Set backend for headless environment
-from matplotlib import pyplot as plt
 from skimage import io
-import numpy as np
-
-my_image = io.imread('uploaded_leaf.jpg')
+import numpy as np 
+from matplotlib import pyplot as plt
+my_image=io.imread('uploaded_leaf.jpg')
+print('my_image')
+random_image=np.random.random([500,500])
+plt.imshow(random_image)
 plt.imshow(my_image)
-plt.axis('off')
-plt.savefig('processed_leaf.png')  # Save the plot instead of displaying it
-plt.close()
+print(random_image.min() , random_image.max())
+print(my_image.min() , my_image.max())
