@@ -9,4 +9,3 @@ random_image=np.random.random([200,200])
 print(my_image.size)
 print(my_image.dtype)
 print(my_image.shape)
-my_image.FLIP_LEFT_RIGHT

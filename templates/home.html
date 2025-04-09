@@ -1,159 +1,376 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>plant clinic</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    
-    <style>
-      h1 {
-        font-size : 40px;
-        font family : Roboto;
-        font-weight : normal;
-        color : rgb(100,100,100);
-        text-align : center;
-      }
-      #banner {
-        width : 90%;
-        height : 360px;
-        object-fit : cover;
-        
-        
-      }
-      h2 {
-        font-size : 32px;
-        font-family : roboto;
-        font-weight : normal;
-        color : rgb(0,0,0);
-        text-align : center;
-        
-      }
-      .bodytext {
-        font-family : roboto;
-        color : rgb(80,80,80);
-        
-      }
-      #container {
-        max-width : 720px;
-        margin : 0 auto 0 auto;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="shadow-lg fixed-top bg-white"</div>
-    <nav class="navbar bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          <img src="https://www.shutterstock.com/shutterstock/photos/1512662309/display_1500/stock-vector-simple-plant-clinic-logo-tamplate-1512662309.jpg"
-            alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-         PLANT CLINIC 
-        </a>
-      </div>
-    </nav>
-    <nav class="navbar navbar-expand-lg navbar-dark
-      bg-dark" area-label="fifth navbar example">
-      <div class="conatiner-fluid">
-        <a class="navbar-brand" href="#"> 
-          WEBSITE 
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggler="navbarexamples"
-          aria-controls="navbarsExample05" area-expanded="false" aria-label="toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarsExample05">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#"> Home </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled"> disabled </a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toogle" 
-                href="#" id="dropdown05" 
-                data-bs-toggle="dropdown" aria-expanded="false"> Dropdown </a>
-              <ul class="dropdown-menu" aria-labelledby="dropdown05">
-                <li>
-                  <a class="dropdown-item"href="#"> Action </a>
-                </li>
-                <li>
-                  <a class="dropdown-item"href="#"> Another Action </a>
-                </li>
-                <li><a class="dropdown-item"href="#"> Something else here </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-          <form role="search">
-            <input class="form-control" type="search" placeholder="search" aria-label="search"></input>
-          </form>
-        </div>
-      </div>
+<!-- saved from url=(0089)file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/4NQJ7Q7U/sam[1].html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    </nav>
-    <div class="container">
-    <h1 class="mt-4 mb-4">{{plant_name}}  CLINIC</h1>
-      <img class="img-fluid"id="banner" src="leaf.jpg" alt="banner">
-      <h2> about plant clinic</h2>
-      <p class="bodytext"> Lorem ipsum odor amet, consectetuer adipiscing elit. Placerat lorem accumsan phasellus hac per sed.   Curabitur dui ridiculus dapibus litora aliquam curabitur. Posuere auctor euismod mi turpis habitant augue vehicula primis. Sodales penatibus et mollis erat senectus blandit condimentum et. Commodo conubia sodales vivamus primis urna posuere habitant? Semper ornare himenaeos erat tempus blandit ligula tristique placerat. Ultricies ornare suspendisse suspendisse vestibulum placerat sit luctus accumsan.</p>
-      <h2 class="mt-4 mb-4">plant categories</h2>
-      <div>
-        {% for plant in plants %}
-            <div class="border-bottom row" 
-              style="margin-bottom :16px;
-              padding-bottom :8px;">
-              <div class="col-9">
-                <h4 
-                   style="color:rgb(120,120,120); 
-                   margin-bottom:4px;
-                    ">
-                   {{plant['title']}}
-                  </h4> 
-                  <div>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PlantDox</title>
 
-                    <b>breed:</b>{{plant['breed']}} 
+  <!-- Fonts and Icons -->
+  <link href="./PlantDox_files/css2" rel="stylesheet">
+  <link href="./PlantDox_files/all.min.css" rel="stylesheet">
+  <link href="./PlantDox_files/aos.css" rel="stylesheet">
 
-                 </div>
-                 {% if 'disease' in plant  %}
-                  <div>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-                    <b>disease:</b>
-                    {{plant['disease']}} 
-                  </div>
-                 {% endif %}
-                
-              </div>
-              <div class= "col-3">
-                <button type="button" 
-                  class="btn btn-outline-primary">
-                  moreinfo
-                </button>
-                
-              </div>
-                
-              
-             </div>
-        {% endfor %}
+    body {
+      font-family: 'Urbanist', sans-serif;
+      background-color: #e0fdf2;
+      color: #2e2e2e;
+      scroll-behavior: smooth;
+    }
 
-      </div>
-     
-      <div style= "text-align:center;">
-        <button class="btn btn-primary btn-lg">CONTACT US</button>
-        <p class="mt-4 mb-4"> copyright 2024,plant clinic </p>
-        
-      </div>
-      
-      
-      <button type="button" class="btn-close" disabled aria-label="Close"></button>
-      
+    .navbar {
+      background: #fff;
+      padding: 20px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar-top {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Lobster', cursive;
+      font-size: 2rem;
+    }
+
+    .black {
+      color: #000;
+    }
+
+    .green {
+      color: #00aa55;
+    }
+
+    .try-button {
+      background: #00aa55;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s ease-in-out;
+    }
+
+    .try-button:hover {
+      background: #008c47;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .nav-links a {
+      font-weight: 500;
+      color: #333;
+      text-decoration: none;
+      transition: 0.3s;
+      font-size: 1rem;
+    }
+
+    .nav-links a:hover {
+      color: #00aa55;
+      transform: scale(1.05);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 80px 20px 40px;
+      background: #e0fdf2;
+    }
+
+    .hero-box {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 50px 30px;
+      border-radius: 16px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-box h1 {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .hero-box p {
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: auto;
+      margin-bottom: 20px;
+    }
+
+    .hero-box button {
+      background: #00aa55;
+      color: white;
+      border: none;
+      padding: 14px 26px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .hero-box button:hover {
+      background: #008c47;
+    }
+
+    .divider-line {
+      width: 100px;
+      height: 4px;
+      background: #00aa55;
+      margin: 30px auto 0;
+      border-radius: 4px;
+    }
+
+    .features {
+      background-color: #e0fdf2;
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .features h2 {
+      font-size: 2.2rem;
+      margin-bottom: 40px;
+      font-weight: 700;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .feature-box {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 25px 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+      text-align: left;
+      transition: transform 0.3s;
+    }
+
+    .feature-box:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature-box h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #00aa55;
+      display: flex;
+      align-items: center;
+    }
+
+    .feature-box i {
+      color: #00aa55;
+      margin-right: 10px;
+      font-size: 1.2rem;
+    }
+
+    .feature-box p {
+      font-size: 0.95rem;
+      color: #444;
+    }
+
+    footer {
+      background: #004d40;
+      color: #fff;
+      padding: 70px 20px 30px;
+      text-align: center;
+      position: relative;
+    }
+
+    .footer-logo {
+      font-family: 'Lobster', cursive;
+      font-size: 2.4rem;
+      margin-bottom: 20px;
+    }
+
+    .subscribe-box {
+      margin: 30px 0;
+    }
+
+    .subscribe-box input {
+      padding: 12px 16px;
+      border-radius: 6px;
+      border: none;
+      max-width: 250px;
+      width: 100%;
+      margin-right: 10px;
+      font-size: 1rem;
+    }
+
+    .subscribe-box button {
+      background-color: #00aa55;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .subscribe-box button:hover {
+      background-color: #008c47;
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 20%;
+      background-color: #00aa55;
+      color: white;
+      padding: 30px 50px;
+      font-size: 1.8rem;
+      font-weight: bold;
+      border-radius: 16px;
+      z-index: 1001;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      text-align: center;
+    }
+
+    .footer-icons {
+      margin: 20px 0;
+    }
+
+    .footer-icons a {
+      color: #fff;
+      margin: 0 10px;
+      font-size: 1.6rem;
+      transition: 0.3s;
+    }
+
+    .footer-icons a:hover {
+      color: #b2dfdb;
+    }
+
+    .footer-links {
+      margin-top: 10px;
+    }
+
+    .footer-links a {
+      color: #b2dfdb;
+      margin: 0 12px;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+  </style>
+</head>
+<body data-aos-easing="ease" data-aos-duration="800" data-aos-delay="0">
+
+  <!-- Popup -->
+  <div class="popup" id="popupMessage">😊<br>Subscribed!</div>
+
+  <!-- Navbar -->
+  <nav class="navbar aos-init aos-animate" data-aos="fade-down">
+    <div class="navbar-top">
+      <div class="logo"><span class="black">Plant</span><span class="green">Dox</span></div>
+      <button class="try-button">Try for Free</button>
     </div>
-    
-     
-    
-      
-      
-  </body>
-  
-  
-</html>
+    <div class="nav-links">
+      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/4NQJ7Q7U/sam[1].html#">Home</a>
+      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/4NQJ7Q7U/sam[1].html#">Scan</a>
+      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/4NQJ7Q7U/sam[1].html#">Guide</a>
+      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/4NQJ7Q7U/sam[1].html#">Plant Blogs</a>
+      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/4NQJ7Q7U/sam[1].html#">About Us</a>
+      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/4NQJ7Q7U/sam[1].html#">Contact Us</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero aos-init aos-animate" data-aos="fade-up">
+    <div class="hero-box">
+      <h1>Plant<span class="green">Dox</span></h1>
+      <p>
+        Advanced AI-powered plant health monitoring system. Upload, identify, and protect your plants with instant disease detection and personalized care recommendations.
+      </p>
+      <button>Start Scanning Now</button>
+      <div class="divider-line"></div>
+    </div>
+  </section>
+
+  <!-- Key Features -->
+  <section class="features aos-init" data-aos="fade-up">
+    <h2>Key Features</h2>
+    <div class="features-grid">
+      <div class="feature-box aos-init" data-aos="fade-up"><h3><i class="fas fa-seedling"></i>Instant Plant Analysis</h3><p>Upload plant images for immediate identification and health assessment using advanced AI technology.</p></div>
+      <div class="feature-box aos-init" data-aos="fade-up" data-aos-delay="100"><h3><i class="fas fa-disease"></i>Disease Detection</h3><p>Detect plant diseases early with severity indicators and actionable treatment recommendations.</p></div>
+      <div class="feature-box aos-init" data-aos="fade-up" data-aos-delay="200"><h3><i class="fas fa-heartbeat"></i>Real-time Health Score</h3><p>Get detailed health scores (0–100) with comprehensive analysis of your plant’s condition.</p></div>
+      <div class="feature-box aos-init" data-aos="fade-up" data-aos-delay="300"><h3><i class="fas fa-history"></i>Health History Tracking</h3><p>Monitor your plant’s health over time with detailed scan history and progress tracking.</p></div>
+      <div class="feature-box aos-init" data-aos="fade-up" data-aos-delay="400"><h3><i class="fas fa-qrcode"></i>QR Code Reports</h3><p>Generate and share QR code reports containing plant details and treatment suggestions.</p></div>
+      <div class="feature-box aos-init" data-aos="fade-up" data-aos-delay="500"><h3><i class="fas fa-cloud-sun"></i>Weather Alerts</h3><p>Receive real-time weather-based disease risk alerts for proactive plant protection.</p></div>
+      <div class="feature-box aos-init" data-aos="fade-up" data-aos-delay="600"><h3><i class="fas fa-users"></i>Community Insights</h3><p>Contribute to and benefit from crowdsourced disease reporting and prevention.</p></div>
+      <div class="feature-box aos-init" data-aos="fade-up" data-aos-delay="700"><h3><i class="fas fa-leaf"></i>Care Guides</h3><p>Access personalized plant care guides with watering, sunlight, and fertilization tips.</p></div>
+      <div class="feature-box aos-init" data-aos="fade-up" data-aos-delay="800"><h3><i class="fas fa-user-graduate"></i>Beginner Friendly</h3><p>Step-by-step guidance for new gardeners with expert tips and common mistake prevention.</p></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer data-aos="fade-up" class="aos-init">
+    <div class="footer-logo"><span class="black">Plant</span><span class="green">Dox</span></div>
+
+    <div class="subscribe-box aos-init" data-aos="zoom-in">
+      <input type="email" placeholder="Enter your email">
+      <button onclick="showPopup()">Subscribe</button>
+    </div>
+
+    <div class="footer-icons aos-init" data-aos="fade-up">
+      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/4NQJ7Q7U/sam[1].html#"><i class="fab fa-instagram"></i></a>
+      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/4NQJ7Q7U/sam[1].html#"><i class="fab fa-twitter"></i></a>
+      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/4NQJ7Q7U/sam[1].html#"><i class="fab fa-facebook"></i></a>
+    </div>
+
+    <div class="footer-links aos-init" data-aos="fade-up">
+      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/4NQJ7Q7U/sam[1].html#">Plant Guide</a>
+      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/4NQJ7Q7U/sam[1].html#">Privacy</a>
+      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/4NQJ7Q7U/sam[1].html#">Terms</a>
+    </div>
+
+    <p style="margin-top: 10px;">© 2025 PlantDox. All rights reserved.</p>
+  </footer>
+
+  <!-- AOS & Popup -->
+  <script src="./PlantDox_files/aos.js.download"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+
+    function showPopup() {
+      const popup = document.getElementById("popupMessage");
+      popup.style.display = "block";
+      setTimeout(() => {
+        popup.style.display = "none";
+      }, 2000);
+    }
+  </script>
+
+
+</body></html>
