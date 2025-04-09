@@ -313,7 +313,11 @@
       <p>
         Advanced AI-powered plant health monitoring system. Upload, identify, and protect your plants with instant disease detection and personalized care recommendations.
       </p>
-      <button>Start Scanning Now</button>
+      <form action="/scan" method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*" required>
+        <button type="submit">start scanning now</button>
+       </form>
+       
       <div class="divider-line"></div>
     </div>
   </section>
