@@ -18,14 +18,13 @@ def scan():
         flash('No file part')
         return redirect(url_for('home'))
 
-    file = request.files['plantimage']
+    file = request.files['image']
     if file.filename == '':
         flash('No selected file')
         return redirect(url_for('home'))
 
     filename = secure_filename(file.filename)
     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-    file.save(file_path)
     return render_template('result.html', filename=filename)
 
 @app.route('/uploads/<filename>')
