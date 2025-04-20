@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0089)file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/4NQJ7Q7U/sam[1].html -->
+<!-- saved from url=(0094)file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/3RD5EQX6/PlantDox[1].html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -241,17 +241,44 @@
       display: none;
       position: fixed;
       left: 50%;
-      transform: translateX(-50%);
-      top: 20%;
-      background-color: #00aa55;
-      color: white;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #ffffff;
+      color: #2e2e2e;
       padding: 30px 50px;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       font-weight: bold;
       border-radius: 16px;
       z-index: 1001;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
       text-align: center;
+      animation: fadeInOut 2s ease-in-out;
+    }
+
+    .popup img {
+      width: 50px;
+      height: 50px;
+      display: block;
+      margin: 0 auto 10px;
+    }
+
+    @keyframes fadeInOut {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+      }
+      10% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
+      90% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -40%);
+      }
     }
 
     .footer-icons {
@@ -288,7 +315,10 @@
 <body data-aos-easing="ease" data-aos-duration="800" data-aos-delay="0">
 
   <!-- Popup -->
-  <div class="popup" id="popupMessage">😊<br>Subscribed!</div>
+  <div class="popup" id="popupMessage">
+    <img src="https://emojicdn.elk.sh/%F0%9F%98%8A" alt="Smiley">
+    <p style="margin: 0; font-size: 1.2rem; font-weight: 600;">Subscribed!</p>
+  </div>
 
   <!-- Navbar -->
   <nav class="navbar aos-init aos-animate" data-aos="fade-down">
@@ -297,12 +327,12 @@
       <button class="try-button">Try for Free</button>
     </div>
     <div class="nav-links">
-      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/4NQJ7Q7U/sam[1].html#">Home</a>
-      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/4NQJ7Q7U/sam[1].html#">Scan</a>
-      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/4NQJ7Q7U/sam[1].html#">Guide</a>
-      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/4NQJ7Q7U/sam[1].html#">Plant Blogs</a>
-      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/4NQJ7Q7U/sam[1].html#">About Us</a>
-      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/4NQJ7Q7U/sam[1].html#">Contact Us</a>
+      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/3RD5EQX6/PlantDox[1].html#">Home</a>
+      <a href="{{url_for('index')}}">Scan</a>
+      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/3RD5EQX6/PlantDox[1].html#">Guide</a>
+      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/3RD5EQX6/PlantDox[1].html#">Plant Blogs</a>
+      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/3RD5EQX6/PlantDox[1].html#">About Us</a>
+      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/3RD5EQX6/PlantDox[1].html#">Contact Us</a>
     </div>
   </nav>
 
@@ -313,11 +343,7 @@
       <p>
         Advanced AI-powered plant health monitoring system. Upload, identify, and protect your plants with instant disease detection and personalized care recommendations.
       </p>
-      <form action="/scan" method="POST" enctype="multipart/form-data">
-        <input type="file" name="image" accept="image/*" required>
-        <button type="submit">start scanning now</button>
-       </form>
-       
+      <button>Start Scanning Now</button>
       <div class="divider-line"></div>
     </div>
   </section>
@@ -348,15 +374,15 @@
     </div>
 
     <div class="footer-icons aos-init" data-aos="fade-up">
-      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/4NQJ7Q7U/sam[1].html#"><i class="fab fa-instagram"></i></a>
-      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/4NQJ7Q7U/sam[1].html#"><i class="fab fa-twitter"></i></a>
-      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/4NQJ7Q7U/sam[1].html#"><i class="fab fa-facebook"></i></a>
+      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/3RD5EQX6/PlantDox[1].html#"><i class="fab fa-instagram"></i></a>
+      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/3RD5EQX6/PlantDox[1].html#"><i class="fab fa-twitter"></i></a>
+      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/3RD5EQX6/PlantDox[1].html#"><i class="fab fa-facebook"></i></a>
     </div>
 
     <div class="footer-links aos-init" data-aos="fade-up">
-      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/4NQJ7Q7U/sam[1].html#">Plant Guide</a>
-      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/4NQJ7Q7U/sam[1].html#">Privacy</a>
-      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/4NQJ7Q7U/sam[1].html#">Terms</a>
+      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/3RD5EQX6/PlantDox[1].html#">Plant Guide</a>
+      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/3RD5EQX6/PlantDox[1].html#">Privacy</a>
+      <a href="file:///C:/Users/lenovo/AppData/Local/Microsoft/Windows/INetCache/IE/3RD5EQX6/PlantDox[1].html#">Terms</a>
     </div>
 
     <p style="margin-top: 10px;">© 2025 PlantDox. All rights reserved.</p>
