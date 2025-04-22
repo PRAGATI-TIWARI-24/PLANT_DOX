@@ -16,3 +16,8 @@ scikit-image
 Pillow
 Pillow
 werkzeug
+requests
+flask-uploads
+flask-wtf
+wtf
+wtforms

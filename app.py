@@ -1,39 +1,56 @@
-
-from flask import Flask, render_template, request, redirect, url_for, flash, send_from_directory
-import os
+from flask import Flask, render_template, request, redirect, url_for, flash, session, send_from_directory
+from flask_wtf import FlaskForm
+from wtforms import FileField, SubmitField
+from wtforms.validators import DataRequired
 from werkzeug.utils import secure_filename
+import os
 
 app = Flask(__name__)
 app.secret_key = "plantdox"
-UPLOAD_FOLDER = 'uploads'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['UPLOAD_FOLDER'] = 'uploads'
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max
 
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+
+# WTForms Form
+class UploadForm(FlaskForm):
+    photo = FileField('Upload Image', validators=[DataRequired()])
+    submit = SubmitField('Upload')
+
+# Route to serve uploaded files
+@app.route('/uploads/<filename>')
+def get_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
+# Home page
 @app.route('/')
 def home():
     return render_template('home.html')
-@app.route('/index')
+
+# Index page with upload form
+@app.route('/index', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    form = UploadForm()
+    uploaded_img = session.get('uploaded_img')
 
-@app.route('/scan', methods=['POST'])
-def scan():
-    if 'image' not in request.files:
-        flash('No file part')
-        return redirect(url_for('home'))
+    if form.validate_on_submit():
+        file = form.photo.data
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            file.save(filepath)
+            session['uploaded_img'] = filename
+            flash('Image uploaded successfully!', 'success')
+            return redirect(url_for('index'))
+        else:
+            flash('Invalid file type.', 'danger')
 
-    file = request.files['image']
-    if file.filename == '':
-        flash('No selected file')
-        return redirect(url_for('home'))
+    return render_template('index.html', form=form, uploaded_image=uploaded_img)
 
-    filename = secure_filename(file.filename)
-    file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-    return render_template('result.html', filename=filename)
-
-@app.route('/uploads/<filename>')
-def uploaded_file(filename):
-    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+# Check file extension
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 if __name__ == '__main__':
-    os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(debug=True)
