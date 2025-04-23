@@ -4,6 +4,7 @@ from wtforms import FileField, SubmitField
 from wtforms.validators import DataRequired
 from werkzeug.utils import secure_filename
 import os
+import cv2
 
 app = Flask(__name__)
 app.secret_key = "plantdox"
@@ -33,24 +34,32 @@ def home():
 def index():
     form = UploadForm()
     uploaded_img = session.get('uploaded_img')
+    image=None
 
     if form.validate_on_submit():
-        file = form.photo.data
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            file.save(filepath)
+        if form.validate_on_submit():
+            # Remove old uploaded image if it exists
+            old_filename = session.get('uploaded_img')
+            if old_filename:
+                old_file_path = os.path.join(app.config['UPLOAD_FOLDER'],
+                                             old_filename)
+                if os.path.exists(old_file_path):
+                    os.remove(old_file_path)  
+            
+            filename = form.photo.data.save(os.path.join(app.config['ULOAD_FOLDER'],secure_filename(form.photo.data.filename)))
+            filename = secure_filename(filename)
             session['uploaded_img'] = filename
-            flash('Image uploaded successfully!', 'success')
-            return redirect(url_for('index'))
         else:
             flash('Invalid file type.', 'danger')
 
-    return render_template('index.html', form=form, uploaded_image=uploaded_img)
+    return render_template('index.html', form=form, uploaded_img=uploaded_img,image=image)
+    
 
 # Check file extension
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)

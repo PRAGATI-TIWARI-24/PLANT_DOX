@@ -231,7 +231,17 @@
             
             <img src="{{ url_for('get_file', filename=uploaded_image) }}" 
               style="max-width:400px;">
+          <form method="POST" action="{{ url_for('remove_image') }}">
+            <button type="submit" style="background-color: #dc3545; color:
+              white; border: none; padding: 10px 20px; border-radius: 5px;">
+              Remove Image
+            </button>
+          </form>
           {% endif %}
+        
+
+          
+
         </p>
         <p style="font-size: 14px">
           Supported formats: JPEG, PNG (up to 5 images)
