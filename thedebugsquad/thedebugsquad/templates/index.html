@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>{{title}}</title>
+     
+    </html>
+    <body>
+        Welcome to thedebugsquad LTG EVIL
+        <div class="main"> {{clist}} </div>
+        SUM {{output}}
+      
+    </body>
+     <body>
+
+        {% for n in clist %}
+        <div>{{forloop.counter}} {{n}}</div>
+        {% endfor %}
+        <br/>
+        <table border="4" cellpading="20">
+            <tr>
+                <th>name</th>
+                <th>Quality</th>
+            <tr>
+        {% for d in iden %}
+                
+        <tr>
+            <td>{{d.name}}</td>
+            <td>{{d.Quality}}</td>
+        <tr>
+        {% endfor %}
+        <table>
+        
+    {% for n in List %}
+
+      {% if n > 40 %}
+      <div>{{n}}</div>
+
+      {% endif %}
+
+
+
+    {% endfor %}
+        </body>
+
+
+</html>

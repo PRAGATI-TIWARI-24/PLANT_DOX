@@ -1,0 +1,83 @@
+/* Main stylesheet for PlantDox */
+
+/* Global styles */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #e0fdf2;
+  color: #333;
+}
+
+/* Navigation styles */
+.navbar-nav .nav-item {
+  margin-right: 15px;
+}
+
+.navbar-brand span.plant {
+  color: black;
+}
+
+.navbar-brand span.dox {
+  color: #00aa55;
+  font-weight: bold;
+}
+
+/* Button styles */
+.btn-primary, .submit-btn {
+  background-color: #00aa55;
+  border-color: #00aa55;
+}
+
+.btn-primary:hover, .submit-btn:hover {
+  background-color: #008c47;
+  border-color: #008c47;
+}
+
+/* Container styles */
+.content-container {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* Status indicators */
+.status-pending {
+  background-color: #fff4de;
+  color: #ffa000;
+}
+
+.status-completed {
+  background-color: #e0f5ea;
+  color: #00aa55;
+}
+
+.status-failed {
+  background-color: #ffebee;
+  color: #e53935;
+}
+
+/* Form styles */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.help-text {
+  font-size: 14px;
+  color: #666;
+  margin-top: 5px;
+}
+
+/* Scan detail styles */
+.diagnosis-result {
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f0f9f6;
+  border-left: 4px solid #00aa55;
+}
+
+.recommendations {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #e8f5e9;
+  border-radius: 8px;
+} 

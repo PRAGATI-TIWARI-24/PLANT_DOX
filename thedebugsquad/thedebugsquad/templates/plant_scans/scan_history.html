@@ -1,0 +1,233 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PlantDox - Scan History</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --primary-green: #00A86B;
+      --light-gray: #f9f9f9;
+      --border-gray: #ddd;
+      --blue-box: #e6f0ff;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--light-gray);
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header, footer {
+      background-color: white;
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-gray);
+    }
+
+    header h1 {
+      font-size: 24px;
+      margin: 0;
+    }
+
+    header h1 span.plant {
+      color: black;
+    }
+
+    header h1 span.dox {
+      color: var(--primary-green);
+      font-weight: bold;
+    }
+
+    nav a {
+      margin-left: 25px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    nav a.active {
+      color: var(--primary-green);
+      border-bottom: 2px solid var(--primary-green);
+      padding-bottom: 2px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: white;
+      padding: 40px 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    h2 {
+      font-size: 24px;
+      color: #222;
+      margin-bottom: 25px;
+    }
+
+    .scan-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .scan-card {
+      border: 1px solid #eee;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .scan-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .scan-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .scan-info {
+      padding: 15px;
+    }
+
+    .scan-title {
+      font-weight: 600;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .scan-date {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .scan-status {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .status-pending {
+      background-color: #fff4de;
+      color: #ffa000;
+    }
+
+    .status-completed {
+      background-color: #e0f5ea;
+      color: var(--primary-green);
+    }
+
+    .status-failed {
+      background-color: #ffebee;
+      color: #e53935;
+    }
+
+    .empty-message {
+      text-align: center;
+      padding: 40px;
+      color: #666;
+    }
+
+    .scan-link {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .new-scan-btn {
+      background-color: var(--primary-green);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 500;
+      display: inline-block;
+      margin-bottom: 30px;
+      text-decoration: none;
+    }
+
+    .new-scan-btn:hover {
+      background-color: #008c47;
+    }
+
+    footer {
+      background-color: white;
+      text-align: center;
+      font-size: 14px;
+      color: #999;
+      padding: 20px;
+      margin-top: 60px;
+      border-top: 1px solid var(--border-gray);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1><span class="plant">Plant</span><span class="dox">Dox</span></h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="{% url 'upload_scan' %}">Scan</a>
+      <a href="{% url 'scan_history' %}" class="active">History</a>
+      <a href="{% url 'guide' %}">Guide</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h2>Your Plant Scan History</h2>
+    
+    <a href="{% url 'upload_scan' %}" class="new-scan-btn">+ New Scan</a>
+    
+    {% if scans %}
+      <div class="scan-list">
+        {% for scan in scans %}
+          <a href="{% url 'scan_detail' scan.id %}" class="scan-link">
+            <div class="scan-card">
+              {% if scan.image %}
+                <img src="{{ scan.image.url }}" alt="{{ scan.title }}" class="scan-image">
+              {% else %}
+                <div class="scan-image" style="background-color: #eee; display: flex; justify-content: center; align-items: center;">
+                  <span style="color: #999;">No Image</span>
+                </div>
+              {% endif %}
+              <div class="scan-info">
+                <div class="scan-title">{{ scan.title }}</div>
+                <div class="scan-date">{{ scan.upload_date|date:"F j, Y" }}</div>
+                <span class="scan-status status-{{ scan.status }}">
+                  {{ scan.get_status_display }}
+                </span>
+              </div>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="empty-message">
+        <p>You haven't uploaded any plant scans yet.</p>
+        <p>Start by scanning your first plant!</p>
+      </div>
+    {% endif %}
+  </div>
+
+  <footer>
+    © 2024 PlantDox. All rights reserved.
+  </footer>
+</body>
+</html>
+{% endblock %} 

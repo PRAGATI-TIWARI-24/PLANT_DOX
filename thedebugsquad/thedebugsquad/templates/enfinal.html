@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PlantDox - Plants A-Z</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4fdf6;
+    }
+    header {
+      background-color: #dff8e7;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .logo span {
+      color: #28a745;
+    }
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #222;
+      font-weight: 500;
+    }
+    .btn-free {
+      background-color: #28a745;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .container {
+      padding: 30px;
+    }
+    .title {
+      font-size: 32px;
+      font-weight: bold;
+    }
+    .description {
+      margin-top: 10px;
+      font-size: 16px;
+      color: #555;
+    }
+    .toggle-buttons {
+      margin: 20px 0;
+    }
+    .toggle-buttons button {
+      padding: 8px 16px;
+      margin-right: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .letter-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+      gap: 10px;
+      max-width: 400px;
+      margin: 20px 0;
+    }
+    .letter-grid button {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+    .plants-section {
+      margin-top: 20px;
+    }
+    .plant-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .plant {
+      width: 150px;
+      text-align: center;
+    }
+    .plant img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+    .show-more {
+      background-color: #28a745;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      display: block;
+      margin: 10px auto 30px auto;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Plant<span>Dox</span></div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="{% url 'upload_scan' %}">Scan</a>
+      <a href="{% url 'scan_history' %}">History</a>
+      <a href="{% url 'guide' %}" class="active">Guide</a>
+    </nav>
+    <a href="{% url 'upload_scan' %}"><button class="btn-free">Try for Free</button></a>
+  </header>
+  
+  <div class="container">
+    <div class="title">Plants A-Z</div>
+    <p class="description">Navigate our 'Plants A-Z' for an overview of over a thousand plants. From Aloe to Zinnia, our alphabetical guide is the go-to resource for plant identification and botanical curiosity. Perfect for both research and browsing.</p>
+    
+    <div class="toggle-buttons">
+      <button id="toggleCommon">Common Name</button>
+      <button id="toggleScientific">Scientific Name</button>
+    </div>
+
+    <div class="letter-grid">
+      <!-- Create buttons for all A-Z -->
+      <script>
+        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+        document.write(letters.map(letter => `<button onclick="showPlants('${letter}')">${letter}</button>`).join(''));
+      </script>
+    </div>
+
+    <div class="plants-section" id="plantsSection">
+      <!-- Plant entries will appear here -->
+    </div>
+  </div>
+  
+  <script>
+    const samplePlants = {
+      A: ['Aloe', 'Aster', 'Ash', 'Amaranth', 'Azalea'],
+      B: ['Bamboo', 'Begonia', 'Birch', 'Bluebell', 'Basil'],
+      C: ['Cactus', 'Cedar', 'Clover', 'Crocus', 'Camellia'],
+      Z: ['Zinnia', 'Zamia', 'Zelkova', 'Zebra plant', 'Zephyranthes']
+    };
+
+    function showPlants(letter) {
+      const section = document.getElementById('plantsSection');
+      section.innerHTML = '';
+      const plants = samplePlants[letter] || [];
+
+      const container = document.createElement('div');
+      container.classList.add('plant-list');
+      plants.forEach(plant => {
+        const div = document.createElement('div');
+        div.className = 'plant';
+        div.innerHTML = `<img src="https://via.placeholder.com/150" alt="${plant}" /><p>${plant}</p>`;
+        container.appendChild(div);
+      });
+      section.appendChild(container);
+
+      const showMore = document.createElement('button');
+      showMore.className = 'show-more';
+      showMore.textContent = 'Show More ↓';
+      showMore.onclick = () => alert('Load more plants starting with ' + letter);
+      section.appendChild(showMore);
+    }
+  </script>
+</body>
+</html>
+{% endblock %}

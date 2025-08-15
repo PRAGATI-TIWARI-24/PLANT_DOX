@@ -1,0 +1,419 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PlantDox</title>
+
+  <!-- Fonts and Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700&family=Lobster&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Urbanist', sans-serif;
+      background-color: #e0fdf2;
+      color: #2e2e2e;
+      scroll-behavior: smooth;
+    }
+
+    .navbar {
+      background: #fff;
+      padding: 20px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar-top {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Lobster', cursive;
+      font-size: 2rem;
+    }
+
+    .black {
+      color: #000;
+    }
+
+    .green {
+      color: #00aa55;
+    }
+
+    .try-button {
+      background: #00aa55;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s ease-in-out;
+    }
+
+    .try-button:hover {
+      background: #008c47;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .nav-links a {
+      font-weight: 500;
+      color: #333;
+      text-decoration: none;
+      transition: 0.3s;
+      font-size: 1rem;
+    }
+
+    .nav-links a:hover {
+      color: #00aa55;
+      transform: scale(1.05);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 80px 20px 40px;
+      background: #e0fdf2;
+    }
+
+    .hero-box {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 50px 30px;
+      border-radius: 16px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-box h1 {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .hero-box p {
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: auto;
+      margin-bottom: 20px;
+    }
+
+    .hero-box button {
+      background: #00aa55;
+      color: white;
+      border: none;
+      padding: 14px 26px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .hero-box button:hover {
+      background: #008c47;
+    }
+
+    .divider-line {
+      width: 100px;
+      height: 4px;
+      background: #00aa55;
+      margin: 30px auto 0;
+      border-radius: 4px;
+    }
+
+    .features {
+      background-color: #e0fdf2;
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .features h2 {
+      font-size: 2.2rem;
+      margin-bottom: 40px;
+      font-weight: 700;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .feature-box {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 25px 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+      text-align: left;
+      transition: transform 0.3s;
+    }
+
+    .feature-box:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature-box h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #00aa55;
+      display: flex;
+      align-items: center;
+    }
+
+    .feature-box i {
+      color: #00aa55;
+      margin-right: 10px;
+      font-size: 1.2rem;
+    }
+
+    .feature-box p {
+      font-size: 0.95rem;
+      color: #444;
+    }
+
+    footer {
+      background: #004d40;
+      color: #fff;
+      padding: 70px 20px 30px;
+      text-align: center;
+      position: relative;
+    }
+
+    .footer-logo {
+      font-family: 'Lobster', cursive;
+      font-size: 2.4rem;
+      margin-bottom: 20px;
+    }
+
+    .subscribe-box {
+      margin: 30px 0;
+    }
+
+    .subscribe-box input {
+      padding: 12px 16px;
+      border-radius: 6px;
+      border: none;
+      max-width: 250px;
+      width: 100%;
+      margin-right: 10px;
+      font-size: 1rem;
+    }
+
+    .subscribe-box button {
+      background-color: #00aa55;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .subscribe-box button:hover {
+      background-color: #008c47;
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 20%;
+      background-color: #00aa55;
+      color: white;
+      padding: 30px 50px;
+      font-size: 1.8rem;
+      font-weight: bold;
+      border-radius: 16px;
+      z-index: 1001;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      text-align: center;
+    }
+
+    .footer-icons {
+      margin: 20px 0;
+    }
+
+    .footer-icons a {
+      color: #fff;
+      margin: 0 10px;
+      font-size: 1.6rem;
+      transition: 0.3s;
+    }
+
+    .footer-icons a:hover {
+      color: #b2dfdb;
+    }
+
+    .footer-links {
+      margin-top: 10px;
+    }
+
+    .footer-links a {
+      color: #b2dfdb;
+      margin: 0 12px;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Popup -->
+  <div class="popup" id="popupMessage">😊<br/>Subscribed!</div>
+
+  <!-- Navbar -->
+  <nav class="navbar" data-aos="fade-down">
+    <div class="navbar-top">
+      <div class="logo"><span class="black">Plant</span><span class="green">Dox</span></div>
+      <a href="{% url 'upload_scan' %}"><button class="try-button">Try for Free</button></a>
+    </div>
+    <div class="nav-links">
+      <a href="/homepage">Home</a>
+      <a href="{% url 'upload_scan' %}">Scan</a>
+      <a href="{% url 'scan_history' %}">History</a>
+      <a href="{% url 'guide' %}">Guide</a>
+      <a href="#">Plant Blogs</a>
+      <a href="#">About Us</a>
+      <a href="#">Contact Us</a>
+    </div>
+  </nav>
+ 
+  <!-- Hero Section -->
+  <section class="hero" data-aos="fade-up">
+    <div class="hero-box">
+      <h1>Plant<span class="green">Dox</span></h1>
+      <p>
+        Advanced AI-powered plant health monitoring system. Upload, identify, and protect your plants with instant disease detection and personalized care recommendations.
+      </p>
+      <a href="{% url 'upload_scan' %}"><button>Start Scanning Now</button></a>
+      <div class="divider-line"></div>
+    </div>
+  </section>
+
+  <!-- Key Features -->
+  <section class="features" data-aos="fade-up">
+    <h2>Key Features</h2>
+    <div class="features-grid">
+      <div class="feature-box" data-aos="fade-up"><h3><i class="fas fa-seedling"></i>Instant Plant Analysis</h3><p>Upload plant images for immediate identification and health assessment using advanced AI technology.</p></div>
+      <div class="feature-box" data-aos="fade-up" data-aos-delay="100"><h3><i class="fas fa-disease"></i>Disease Detection</h3><p>Detect plant diseases early with severity indicators and actionable treatment recommendations.</p></div>
+      <div class="feature-box" data-aos="fade-up" data-aos-delay="200"><h3><i class="fas fa-heartbeat"></i>Real-time Health Score</h3><p>Get detailed health scores (0–100) with comprehensive analysis of your plant's condition.</p></div>
+      <div class="feature-box" data-aos="fade-up" data-aos-delay="300"><h3><i class="fas fa-history"></i>Health History Tracking</h3><p>Monitor your plant's health over time with detailed scan history and progress tracking.</p></div>
+      <div class="feature-box" data-aos="fade-up" data-aos-delay="400"><h3><i class="fas fa-qrcode"></i>QR Code Reports</h3><p>Generate and share QR code reports containing plant details and treatment suggestions.</p></div>
+      <div class="feature-box" data-aos="fade-up" data-aos-delay="500"><h3><i class="fas fa-cloud-sun"></i>Weather Alerts</h3><p>Receive real-time weather-based disease risk alerts for proactive plant protection.</p></div>
+      <div class="feature-box" data-aos="fade-up" data-aos-delay="600"><h3><i class="fas fa-users"></i>Community Insights</h3><p>Contribute to and benefit from crowdsourced disease reporting and prevention.</p></div>
+      <div class="feature-box" data-aos="fade-up" data-aos-delay="700"><h3><i class="fas fa-leaf"></i>Care Guides</h3><p>Access personalized plant care guides with watering, sunlight, and fertilization tips.</p></div>
+      <div class="feature-box" data-aos="fade-up" data-aos-delay="800"><h3><i class="fas fa-user-graduate"></i>Beginner Friendly</h3><p>Step-by-step guidance for new gardeners with expert tips and common mistake prevention.</p></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer data-aos="fade-up">
+    <div class="footer-logo"><span class="black">Plant</span><span class="green">Dox</span></div>
+
+    <div class="subscribe-box" data-aos="zoom-in">
+      <input type="email" id="subscription-email" placeholder="Enter your email" />
+      <button onclick="subscribeUser()">Subscribe</button>
+    </div>
+
+    <div class="footer-icons" data-aos="fade-up">
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      
+
+    </div>
+
+    <div class="footer-links" data-aos="fade-up">
+      <a href="#">Plant Guide</a>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      
+    </div>
+
+    <p style="margin-top: 10px;">&copy; 2025 PlantDox. All rights reserved.</p>
+  </footer>
+
+  <!-- AOS & Popup -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+
+    function showPopup(message = "😊<br/>Subscribed!") {
+      const popup = document.getElementById("popupMessage");
+      popup.innerHTML = message;
+      popup.style.display = "block";
+      setTimeout(() => {
+        popup.style.display = "none";
+      }, 2000);
+    }
+
+    async function subscribeUser() {
+      const emailInput = document.getElementById("subscription-email");
+      const email = emailInput.value.trim();
+      
+      if (!email) {
+        showPopup("❌<br/>Please enter an email");
+        return;
+      }
+      
+      try {
+        const response = await fetch("{% url 'subscribe' %}", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email }),
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+          showPopup("😊<br/>Subscribed!");
+          emailInput.value = "";
+        } else {
+          showPopup(`❌<br/>${data.message}`);
+        }
+      } catch (error) {
+        showPopup("❌<br/>Error subscribing");
+        console.error("Error:", error);
+      }
+    }
+  </script>
+  
+</body>
+</html>
+
+{% endblock %}
